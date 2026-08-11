@@ -7,7 +7,7 @@ metadata:
   labels:
     {{- include "github-actions-cache-server.labels" . | nindent 4 }}
 spec:
-  {{- if .Values.podDisruptionBudget.minAvailable }}
+  {{- if ne (.Values.podDisruptionBudget.minAvailable | toString) "" }}
   minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
   {{- else }}
   maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}
